@@ -1,0 +1,14 @@
+#onlineMsg {
+  position: absolute;
+  font-size: 20px;
+  top: 0px; 
+  left: 1220px;
+  font-family: 'Zen Kurenaido';
+}
+#connectedUsers {
+  position: absolute;
+  font-size: 22px;
+  top: 20px; 
+  left: 1256px; 
+  font-family: 'Quicksand';
+}

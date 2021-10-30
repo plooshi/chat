@@ -1,0 +1,1 @@
+(()=>{"use strict";window.user=void 0,window.socket.on("loginError",(function(e){document.getElementById("error-container").innerHTML=e})),window.socket.on("userSet",(function(e){window.user=e.username.replace(/ +/g," "),window.socket.emit("getChatHTML"),window.socket.emit("getOnlineUsers")}))})();

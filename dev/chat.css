@@ -1,0 +1,33 @@
+#message {
+  position: absolute; 
+  top: 500px; 
+  left: 325px; 
+  width: 50%; 
+  height: 5%; 
+  outline: none; 
+  background-color: #767676; 
+  border: none; 
+  font-family: Tajawal; 
+  font-size: 20px; 
+  font-style: bold;
+  color: black;
+}
+
+#username {
+  font-family: Barlow; 
+  font-size: 22px;
+}
+
+#msg {
+  font-family: 'Varela Round'; 
+  font-size: 20px;
+}
+
+#sys_msg {
+  font-family: 'Nunito'; 
+  font-size: 20px;
+}
+
+::placeholder {
+  color: #000000;
+}

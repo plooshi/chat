@@ -1,0 +1,25 @@
+#name {
+  position: absolute; 
+  top: 500px; 
+  left: 325px; 
+  width: 50%; 
+  height: 5%; 
+  outline: none; 
+  background-color: #767676; 
+  border: none; 
+  font-family: Tajawal; 
+  font-size: 20px; 
+}
+
+#password {
+  position: absolute; 
+  top: 550px; 
+  left: 325px; 
+  width: 50%; 
+  height: 5%; 
+  outline: none; 
+  background-color: #767676; 
+  border: none; 
+  font-family: Tajawal; 
+  font-size: 20px; 
+}

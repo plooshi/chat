@@ -1,0 +1,1 @@
+(()=>{"use strict";function e(e){user&&document.getElementById("connectedUsers")&&(document.getElementById("connectedUsers").innerHTML="<p>"+e.toString().split(",").join("</p><p>"))}window.socket.on("onlineUsers",e),window.socket.on("updateOnline",e)})();

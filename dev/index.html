@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>   
+    <!-- <script defer src="/socket.io/socket.io.js">
+    </script> -->
+    <title>Ploosh Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ploosh's chat">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100&family=Nunito&family=Quicksand:wght@300&family=Tajawal:wght@200&family=Varela+Round&family=Zen+Kurenaido&display=swap" rel="stylesheet" as="font">
+  </head>
+  <link rel="icon" href="/assets/icon-256.png">
+  <body style="background-color: #767676">
+    <center>
+      <p id="error-container"></p> 
+      <form>
+        <input id="name" type="text" name="name" value="" placeholder="Enter your name!" autocomplete="username">
+        <input id="password" type="password" name="password" value="" placeholder="Enter your password!" autocomplete="current-password">
+      </form>
+    </center>
+    <script>
+      document.getElementById("name").addEventListener("keyup", event => {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+          socket.emit('login', {
+            user: document.getElementById('name').value,
+            password: document.getElementById('password').value
+          })
+        }
+      });
+      document.getElementById("password").addEventListener("keyup", event => {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+          socket.emit('login', {
+            user: document.getElementById('name').value,
+            password: document.getElementById('password').value
+          })
+        }
+      });
+    </script>
+    </body>
+  </html>

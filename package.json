@@ -1,0 +1,29 @@
+{
+  "name": "aaaaa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx webpack && node ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@naturalatlas/bad-words": "git+https://github.com/naturalatlas/badwords.git",
+    "babel-loader": "^8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.5.0",
+    "csso-webpack-plugin": "^2.0.0-beta.3",
+    "express": "^4.17.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.3",
+    "socket.io": "^4.3.1",
+    "terser-webpack-plugin": "^5.2.4",
+    "users.db": "github:gplushi/users.db",
+    "webpack": "^5.61.0",
+    "webpack-cli": "^4.9.1"
+  }
+}

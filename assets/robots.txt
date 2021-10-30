@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chat.guacaplushy.ga/assets/sitemap.xml
