@@ -1,9 +1,9 @@
 #name {
   position: absolute; 
-  top: 500px; 
-  left: 325px; 
+  top: 83%;
+  left: 50%; 
   width: 50%; 
-  height: 5%; 
+  height: 7%; 
   outline: none; 
   background-color: #767676; 
   border: none; 
@@ -13,10 +13,10 @@
 
 #password {
   position: absolute; 
-  top: 550px; 
-  left: 325px; 
+  top: 91%; 
+  left: 50%; 
   width: 50%; 
-  height: 5%; 
+  height: 7%; 
   outline: none; 
   background-color: #767676; 
   border: none; 

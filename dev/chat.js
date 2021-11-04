@@ -2,16 +2,20 @@ import './chat.css'
 
 window.sendMessage = () => {
   var msg = document.getElementById('message').value;
-  if (user && msg === "" || msg === " ") {
+  if (user && (msg === "" || msg.replace(/ +/g, " ") === " ")) {
     return alert("Message cannot be blank...");
   } else {
-    window.socket.emit('msg', {
-      message: msg, 
+    window.socket.emit("get_msg_pfp", {
+      message: msg,
       user: user
     });
   }
   document.getElementById('message').value = "";
 }
+
+window.socket.on("msg_pfp", data => {
+  window.socket.emit('msg', data);
+});
 
 function delLastMsg() {
   var ih = document.getElementById("message-container").innerHTML;
@@ -32,10 +36,13 @@ function addMsg(data) {
   var sys_txt = sys_bool ? "sys_" : "";
   var html = "";
   if (!sys_bool) {
-    html += `<div><b id="username">${filterTag(data.user)}</b>`
+    html += `<div><img id="pfp" src="/assets/avatar/${data.pfp}" width=32 height=32 /><b id="username">${filterTag(data.user)}</b><br>&emsp;&emsp;&emsp;&emsp;`
+  } else {
+    html += `<div><img id="pfp" src="/assets/avatar/${data.pfp}" width=32 height=32 />`
   }
-  html += `<br>&emsp;&emsp;<b id="${sys_txt}msg">${filterTag(data.message)}</b></div>`
-  document.getElementById("message-container").innerHTML += html
+  html += `<b id="${sys_txt}msg">${filterTag(data.message)}</b></div>`
+  document.getElementById("message-container").innerHTML += html;
+  html = "";
 }
 
 window.socket.on('addChatMsgs', data => {
@@ -45,7 +52,7 @@ window.socket.on('addChatMsgs', data => {
 })
 
 window.socket.on('newmsg', data => {
-  if (!window.user) return;
+  if (!user) return;
   delLastMsg();
   addMsg(data);
 });

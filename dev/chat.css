@@ -1,9 +1,9 @@
 #message {
   position: absolute; 
-  top: 500px; 
-  left: 325px; 
-  width: 50%; 
-  height: 5%; 
+  top: 91%; 
+  left: 50%; 
+  width: 60%; 
+  height: 7%; 
   outline: none; 
   background-color: #767676; 
   border: none; 
@@ -30,4 +30,36 @@
 
 ::placeholder {
   color: #000000;
+}
+
+#pfp_box {
+  position: absolute;
+  top: 75%;
+  left: 48%;
+  font-size: 20px;
+  font-family: Tajawal;
+}
+
+#pfp_text {
+  position: absolute;
+  top: 63%;
+  left: 50%;
+  font-size: 20px;
+  font-family: Tajawal;
+}
+
+html {
+  overflow-y: hidden;
+}
+
+body {
+  overflow-y: hidden;
+}
+
+center {
+  overflow-y: hidden;
+}
+
+div {
+  overflow-y: hidden;
 }

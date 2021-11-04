@@ -2,9 +2,9 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self);
-  window.io = factory();
-  window.socket = window.io();
-})(this, (function () { 'use strict';
+  var io = factory();
+  window.socket = io();
+})(this, (function () {
 
   function _typeof(obj) {
     "@babel/helpers - typeof";
@@ -107,7 +107,7 @@
   }
 
   function _assertThisInitialized(self) {
-    if (self === void 0) {
+    if (self === undefined) {
       throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
     }
 
@@ -117,7 +117,7 @@
   function _possibleConstructorReturn(self, call) {
     if (call && (typeof call === "object" || typeof call === "function")) {
       return call;
-    } else if (call !== void 0) {
+    } else if (call !== undefined) {
       throw new TypeError("Derived constructors may only return object or undefined");
     }
 
@@ -3691,7 +3691,7 @@
       }
 
       opts = opts || {};
-      opts.path = opts.path || "/socket.io";
+      opts.path = opts.path || "/chat";
       _this.opts = opts;
       installTimerFunctions(_assertThisInitialized(_this), opts);
 
@@ -3703,7 +3703,7 @@
 
       _this.reconnectionDelayMax(opts.reconnectionDelayMax || 5000);
 
-      _this.randomizationFactor((_a = opts.randomizationFactor) !== null && _a !== void 0 ? _a : 0.5);
+      _this.randomizationFactor((_a = opts.randomizationFactor) !== null && _a !== undefined ? _a : 0.5);
 
       _this.backoff = new backo2({
         min: _this.reconnectionDelay(),
@@ -3746,7 +3746,7 @@
 
         if (v === undefined) return this._reconnectionDelay;
         this._reconnectionDelay = v;
-        (_a = this.backoff) === null || _a === void 0 ? void 0 : _a.setMin(v);
+        (_a = this.backoff) === null || _a === undefined ? undefined : _a.setMin(v);
         return this;
       }
     }, {
@@ -3756,7 +3756,7 @@
 
         if (v === undefined) return this._randomizationFactor;
         this._randomizationFactor = v;
-        (_a = this.backoff) === null || _a === void 0 ? void 0 : _a.setJitter(v);
+        (_a = this.backoff) === null || _a === undefined ? undefined : _a.setJitter(v);
         return this;
       }
     }, {
@@ -3766,7 +3766,7 @@
 
         if (v === undefined) return this._reconnectionDelayMax;
         this._reconnectionDelayMax = v;
-        (_a = this.backoff) === null || _a === void 0 ? void 0 : _a.setMax(v);
+        (_a = this.backoff) === null || _a === undefined ? undefined : _a.setMax(v);
         return this;
       }
     }, {

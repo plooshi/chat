@@ -23,7 +23,7 @@ module.exports = {
   entry: {
     'socket.io': './dev/socket.io.js',
     chat: './dev/chat.js',
-    user: './dev/user.js',
+    login: './dev/login.js',
     online: './dev/online.js'
   },
   output: {
@@ -31,6 +31,7 @@ module.exports = {
     filename: '[name].[contenthash:8].js',
     assetModuleFilename: '[name].[contenthash:8][ext]'
   },
+  stats: 'errors-only',
   plugins: [
     new CleanWebpackPlugin(),
     new CssoWebpackPlugin(),
@@ -70,7 +71,7 @@ module.exports = {
     module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.ts$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {

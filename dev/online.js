@@ -1,7 +1,7 @@
 import './online.css'
 
 function setOnline(data) {
-  if (!user || !document.getElementById('connectedUsers')) return;
+  if (!window.user || !document.getElementById('connectedUsers')) return;
   document.getElementById('connectedUsers').innerHTML = "<p>" + data.toString().split(",").join("</p><p>");
 }
 

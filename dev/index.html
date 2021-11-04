@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>   
-    <!-- <script defer src="/socket.io/socket.io.js">
-    </script> -->
+  <head>
     <title>Ploosh Chat</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Ploosh's chat">
@@ -14,30 +12,49 @@
   <body style="background-color: #767676">
     <center>
       <p id="error-container"></p> 
-      <form>
+      <form action="">
+        <p id="pfp_text">Upload avatar</p>
+        <input type="file" id="pfp_box">
         <input id="name" type="text" name="name" value="" placeholder="Enter your name!" autocomplete="username">
         <input id="password" type="password" name="password" value="" placeholder="Enter your password!" autocomplete="current-password">
       </form>
     </center>
     <script>
-      document.getElementById("name").addEventListener("keyup", event => {
+      function login(event) {
         event.preventDefault();
         if (event.keyCode === 13) {
           socket.emit('login', {
             user: document.getElementById('name').value,
-            password: document.getElementById('password').value
+            password: document.getElementById('password').value,
+            pfp_filename: new URLSearchParams(window.location.search).get("pfp_filename")
           })
         }
-      });
-      document.getElementById("password").addEventListener("keyup", event => {
-        event.preventDefault();
-        if (event.keyCode === 13) {
-          socket.emit('login', {
-            user: document.getElementById('name').value,
-            password: document.getElementById('password').value
-          })
+      }
+
+      function addLoginEventToElements(...elements) {
+        for (var i = 0; i < elements.length; i++) {
+          var element = elements[i];
+          document.getElementById(element).addEventListener("keyup", login);
         }
-      });
+      }
+
+      document.getElementById('pfp_box').addEventListener('change', function() {
+        const reader = new FileReader();
+        var fileext = this.files[0].type.split("/")[1];
+        reader.onload = function() {
+          const base64 = this.result.replace(/.*base64,/, '');
+          socket.emit('upload_avatar', {
+            data: base64,
+            ext: fileext
+          });
+          socket.on('pfp_hash', hash => {
+            location.search = "?pfp_filename=" + hash + "." + fileext;
+          })
+        };
+        reader.readAsDataURL(this.files[0]);
+      }, false);
+
+      addLoginEventToElements("name", "password");
     </script>
     </body>
   </html>
