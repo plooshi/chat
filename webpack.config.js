@@ -24,7 +24,8 @@ module.exports = {
     'socket.io': './dev/socket.io.js',
     chat: './dev/chat.js',
     login: './dev/login.js',
-    online: './dev/online.js'
+    online: './dev/online.js',
+    fonts: './dev/fonts.js'
   },
   output: {
     path: path.resolve(__dirname, 'prod'),

@@ -6,15 +6,18 @@
     <meta name="description" content="Ploosh's chat">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100&family=Nunito&family=Quicksand:wght@300&family=Tajawal:wght@200&family=Varela+Round&family=Zen+Kurenaido&display=swap" rel="stylesheet" as="font">
+    <link rel="canonical" href="https://chat.guacaplushy.ga/" />
   </head>
   <link rel="icon" href="/assets/icon-256.png">
   <body style="background-color: #767676">
     <center>
       <p id="error-container"></p> 
       <form action="">
-        <p id="pfp_text">Upload avatar</p>
-        <input type="file" id="pfp_box">
+        <!-- <p id="pfp_text">Upload avatar</p> -->
+        <label id="pfp_text">
+          Upload avatar
+          <input type="file" id="pfp_box">
+        </label>
         <input id="name" type="text" name="name" value="" placeholder="Enter your name!" autocomplete="username">
         <input id="password" type="password" name="password" value="" placeholder="Enter your password!" autocomplete="current-password">
       </form>

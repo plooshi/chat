@@ -16,6 +16,10 @@ app.get('/robots.txt', (req, res) => {
   res.sendFile('/home/runner/plooshi/assets/robots.txt');
 });
 
+app.get('/sitemap.xml', (req, res) => {
+  res.sendFile('/home/runner/plooshi/assets/sitemap.xml');
+});
+
 app.get('/:loc', (req, res) => {
   res.sendFile('/home/runner/plooshi/prod/' + req.params.loc);
 });
