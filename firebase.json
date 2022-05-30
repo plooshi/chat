@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "public": "prod",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
+  "functions": {
+    "source": "functions"
+  },
+  "rewrites": [{
+    "source": "**",
+    "function": "app"
+  }]
+}

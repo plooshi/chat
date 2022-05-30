@@ -1,4 +1,5 @@
 window.user = undefined;
+console.log
 import './login.css'
 
 window.socket.on('loginError', data => {

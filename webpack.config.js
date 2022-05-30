@@ -21,15 +21,11 @@ var htmlMinOpts = {
 module.exports = {
   mode: 'production',
   entry: {
-    'socket.io': './dev/socket.io.js',
-    chat: './dev/chat.js',
-    login: './dev/login.js',
-    online: './dev/online.js',
-    fonts: './dev/fonts.js'
+    main: './dev/main.jsx'
   },
   output: {
     path: path.resolve(__dirname, 'prod'),
-    filename: '[name].[contenthash:8].js',
+    filename: 'chat.js',
     assetModuleFilename: '[name].[contenthash:8][ext]'
   },
   stats: 'errors-only',
@@ -72,7 +68,7 @@ module.exports = {
     module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
@@ -95,6 +91,6 @@ module.exports = {
       new TerserPlugin({
         extractComments: true,
       })
-    ],
+    ]
   },
 };

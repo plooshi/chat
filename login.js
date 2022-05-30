@@ -1,29 +1,67 @@
-const db = require("users.db")();
+const { initializeApp } = require('firebase/app');
+const { getFirestore, collection, doc, getDoc, setDoc } = require('firebase/firestore');
 const crypto = require("crypto");
 
-function signup(user, password, pfp_filename) {
-  db.set(user, {
-    password: crypto.createHmac("sha256", process.env.hashing_key).update(password).digest("hex"),
-    pfp: pfp_filename || "default.png"
+initializeApp({
+  apiKey: process.env.fb_apiKey,
+  authDomain: process.env.fb_authDomain,
+  projectId: process.env.fb_projectId,
+  storageBucket: process.env.fb_storageBucket,
+  messagingSenderId: process.env.fb_messagingSenderId,
+  appId: process.env.fb_appId
+});
+
+const db = getFirestore();
+
+function docRef(doc1, user) {
+  return doc(db, doc1, user)
+}
+
+async function fetchDoc(doc, user) {
+  return await getDoc(docRef(doc, user));
+}
+
+async function getData(doc, user) {
+  return (await fetchDoc(doc, user)).data();
+}
+
+async function docExists(doc, user) {
+  return (await fetchDoc(doc, user)).exists();
+}
+
+async function signup(user, password, pfp_fn) {
+  await setDoc(docRef("logins", user), {
+    password: crypto.createHmac("sha256", process.env.hashing_key).update(password).digest("hex")
   });
+  await setDoc(docRef("avatars", user), {
+    pfp: pfp_fn || "default.png"
+  });
+  /*db.set(user, {
+    password: crypto.createHmac("sha256", process.env.hashing_key).update(password).digest("hex"),
+    pfp: pfp_fn || "default.png"
+  });*/
   return true
 }
 
-function login(user, password) {
-  var correctPassword = db.get(user).password === crypto.createHmac("sha256", process.env.hashing_key).update(password).digest("hex");
+async function login(user, password) {
+  /*var correctPassword = db.get(user).password === crypto.createHmac("sha256", process.env.hashing_key).update(password).digest("hex");*/
+  var correctPassword = (await getData("logins", user)).password === crypto.createHmac("sha256", process.env.hashing_key).update(password).digest("hex");
   return correctPassword
 }
 
-function mode(user) {
-  return db.has(user) ? login : signup;
+async function mode(user) {
+  return (await docExists("logins", user)) ? login : signup;
 }
 
-function init(user, password, pfp_filename) {
-  return mode(user)(user, password, pfp_filename);
+async function init(user, password, pfp_fn) {
+  var m = await mode(user);
+  return m(user, password, pfp_fn);
 }
 
-function pfp_filename(user) {
-  return db.get(user).pfp
+async function pfp_filename(user) {
+  /*return db.get(user || "owo").pfp*/
+  var a = await getData("avatars", user || "default")
+  return a.pfp;
 }
 
 module.exports = {
